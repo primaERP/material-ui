@@ -247,6 +247,10 @@ class TextField extends Component {
      * The value of the text field.
      */
     value: PropTypes.any,
+    /**
+     *
+     */
+    iconPlugins: PropTypes.array,
   };
 
   static defaultProps = {
@@ -498,6 +502,7 @@ class TextField extends Component {
           null
         }
         {inputElement}
+        {this.props.iconPlugins}
         {underlineShow ?
           <TextFieldUnderline
             disabled={disabled}
