@@ -250,7 +250,7 @@ class TextField extends Component {
     /**
      *
      */
-    iconPlugins: PropTypes.array,
+    afterInput: PropTypes.element,
   };
 
   static defaultProps = {
@@ -413,6 +413,7 @@ class TextField extends Component {
       rows,
       rowsMax,
       textareaStyle,
+      afterInput,
       ...other,
     } = this.props;
 
@@ -502,7 +503,7 @@ class TextField extends Component {
           null
         }
         {inputElement}
-        {this.props.iconPlugins}
+        {afterInput || null}
         {underlineShow ?
           <TextFieldUnderline
             disabled={disabled}

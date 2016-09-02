@@ -172,6 +172,10 @@ class AutoComplete extends Component {
      * If true, will update when focus event triggers.
      */
     triggerUpdateOnFocus: deprecated(PropTypes.bool, 'Instead, use openOnFocus. It will be removed with v0.16.0.'),
+    /**
+     *
+     */
+    onMenuToggle: PropTypes.func,
   };
 
   static defaultProps = {
@@ -379,6 +383,19 @@ class AutoComplete extends Component {
     this.refs.searchTextField.focus();
   }
 
+  handleClick = (event) => {
+    if (this.props.onMenuToggle) this.props.onMenuToggle(!this.state.open);
+    this.setState({
+      open: !this.state.open,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+    });
+    if (this.state.open) {
+      setTimeout(() => { this.blur() }, 0);
+    } else {
+      setTimeout(() => { this.focus() }, 0);
+    }
+  };
+
   render() {
     const {
       anchorOrigin,
@@ -405,6 +422,8 @@ class AutoComplete extends Component {
       onUpdateInput, // eslint-disable-line no-unused-vars
       openOnFocus, // eslint-disable-line no-unused-vars
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
+      onMenuToggle, // eslint-disable-line no-unused-vars
+      inputStyle,
       ...other,
     } = this.props;
 
@@ -511,6 +530,8 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
+          inputStyle={inputStyle}
+          onClick={this.handleClick}
         />
         <Popover
           style={styles.popover}
