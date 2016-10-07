@@ -170,6 +170,10 @@ class AutoComplete extends Component {
      * Override the inline-styles of AutoComplete's TextField element.
      */
     textFieldStyle: PropTypes.object,
+    /**
+     *
+     */
+    onMenuToggle: PropTypes.func,
   };
 
   static defaultProps = {
@@ -361,6 +365,18 @@ class AutoComplete extends Component {
   focus() {
     this.refs.searchTextField.focus();
   }
+  handleClick = (event) => {
+    if (this.props.onMenuToggle) this.props.onMenuToggle(!this.state.open);
+    this.setState({
+      open: !this.state.open,
+      anchorEl: ReactDOM.findDOMNode(this.refs.searchTextField)
+    });
+    if (this.state.open) {
+      setTimeout(() => { this.blur() }, 0);
+    } else {
+      setTimeout(() => { this.focus() }, 0);
+    }
+  };
 
   render() {
     const {
@@ -388,6 +404,8 @@ class AutoComplete extends Component {
       openOnFocus, // eslint-disable-line no-unused-vars
       popoverProps,
       searchText: searchTextProp, // eslint-disable-line no-unused-vars
+      onMenuToggle, // eslint-disable-line no-unused-vars
+      inputStyle,
       ...other,
     } = this.props;
 
@@ -494,6 +512,8 @@ class AutoComplete extends Component {
           multiLine={false}
           errorStyle={errorStyle}
           style={textFieldStyle}
+          inputStyle={inputStyle}
+          onClick={this.handleClick}
         />
         <Popover
           {...popoverProps}
