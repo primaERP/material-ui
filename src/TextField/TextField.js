@@ -239,6 +239,10 @@ class TextField extends Component {
      * The value of the text field.
      */
     value: PropTypes.any,
+    /**
+     *
+     */
+    afterInput: PropTypes.element,
   };
 
   static defaultProps = {
@@ -399,6 +403,7 @@ class TextField extends Component {
       rows,
       rowsMax,
       textareaStyle,
+      afterInput,
       ...other,
     } = this.props;
 
@@ -487,6 +492,7 @@ class TextField extends Component {
           null
         }
         {inputElement}
+        {afterInput || null}
         {underlineShow ?
           <TextFieldUnderline
             disabled={disabled}
