@@ -40,7 +40,7 @@ function getStyles(props, context) {
       minWidth: isSmall ? 'inherit' : 288,
       flexGrow: isSmall ? 1 : 0,
       margin: 'auto',
-      display: 'table',
+      display: isSmall ? 'initial' : 'table',
       textAlign: 'left'
     },
     content: {
@@ -85,12 +85,21 @@ export const SnackbarBody = (props, context) => {
     />
   );
 
+  const renderCloseButton = (isSmall) => {
+    if (isSmall) {
+      return actionButton;
+    } else {
+      return null;
+    }
+  }
+
   return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
       <div style={prepareStyles(styles.content)}>
         <span>{message}</span>
-        {actionButton}
+        {renderCloseButton(isSmall)}
       </div>
+      {renderCloseButton(!isSmall)}
     </div>
   );
 };
