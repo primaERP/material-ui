@@ -40,6 +40,8 @@ function getStyles(props, context) {
       minWidth: isSmall ? 'inherit' : 288,
       flexGrow: isSmall ? 1 : 0,
       margin: 'auto',
+      display: 'table',
+      textAlign: 'left'
     },
     content: {
       fontSize: 14,
