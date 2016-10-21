@@ -22,6 +22,8 @@ function getStyles(props, context) {
         backgroundColor,
         textColor,
         actionColor,
+        lineHeight,
+        paddingTop,
       },
     },
   } = context;
@@ -34,7 +36,7 @@ function getStyles(props, context) {
       backgroundColor: backgroundColor,
       padding: `0 ${desktopGutter}px`,
       height: desktopSubheaderHeight,
-      lineHeight: `${desktopSubheaderHeight}px`,
+      lineHeight: `${lineHeight}px`,
       borderRadius: isSmall ? 0 : 2,
       maxWidth: isSmall ? 'inherit' : 568,
       minWidth: isSmall ? 'inherit' : 288,
@@ -47,14 +49,18 @@ function getStyles(props, context) {
       fontSize: 14,
       color: textColor,
       opacity: open ? 1 : 0,
+      paddingTop: `${paddingTop}px`,
       transition: open ?
         transitions.easeOut('500ms', 'opacity', '100ms') :
         transitions.easeOut('400ms', 'opacity'),
+      overflow: !isSmall ? 'initial' : 'hidden',
+      whiteSpace: !isSmall ? 'initial' : 'nowrap',
+      textOverflow: !isSmall ? 'initial' : 'ellipsis',
     },
     action: {
       color: actionColor,
       float: 'right',
-      marginTop: 6,
+      marginTop: -6,
       marginRight: -16,
       marginLeft: desktopGutter,
       backgroundColor: 'transparent',
@@ -97,10 +103,10 @@ export const SnackbarBody = (props, context) => {
   return (
     <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
       <div style={prepareStyles(Object.assign(styles.content, contentStyle))}>
+        {renderCloseButton(props.width === SMALL)}
         <span>{message}</span>
-        {renderCloseButton(this.props.width === SMALL)}
       </div>
-      {renderCloseButton(this.props.width !== SMALL)}
+      {renderCloseButton(props.width !== SMALL)}
     </div>
   );
 };

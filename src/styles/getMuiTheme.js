@@ -231,6 +231,8 @@ export default function getMuiTheme(muiTheme, ...more) {
       textColor: palette.alternateTextColor,
       backgroundColor: palette.textColor,
       actionColor: palette.accent1Color,
+      lineHeight: 24,
+      paddingTop: 12,
     },
     subheader: {
       color: fade(palette.textColor, 0.54),
