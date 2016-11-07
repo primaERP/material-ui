@@ -13,6 +13,7 @@ icon-builder/jsx
 *.sublime-project
 *.sublime-workspace
 jsconfig.json
+yarn.lock
 
 # OS files
 .DS_STORE

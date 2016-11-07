@@ -148,7 +148,8 @@ class Master extends Component {
       router.isActive('/get-started') ? 'Get Started' :
       router.isActive('/customization') ? 'Customization' :
       router.isActive('/components') ? 'Components' :
-      router.isActive('/discover-more') ? 'Discover More' : '';
+      router.isActive('/discover-more') ? 'Discover More' :
+			router.isActive('/flexi') ? 'Flexi' : '';
 
     let docked = false;
     let showMenuIconButton = true;
