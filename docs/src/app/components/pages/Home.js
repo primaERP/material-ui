@@ -159,6 +159,11 @@ class HomePage extends Component {
           heading="Components"
           route="/components"
           img="images/components.svg"
+        />
+				<HomeFeature
+          heading="Flexi tests"
+          route="/flexi"
+          img="images/test.jpg"
           lastChild={true}
         />
       </FullWidthSection>

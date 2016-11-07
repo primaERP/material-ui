@@ -66,6 +66,9 @@ import RelatedProjects from './components/pages/discover-more/RelatedProjects';
 
 import StepperPage from './components/pages/components/Stepper/Page';
 
+import FlexiPage from './components/pages/FlexiPage';
+import FlexiTestMenuPage from './components/pages/flexiTest/FlexiTestMenuPage.js';
+
 /**
  * Routes: https://github.com/reactjs/react-router/blob/master/docs/API.md#route
  *
@@ -135,6 +138,11 @@ const AppRoutes = (
       <Route path="time-picker" component={TimePickerPage} />
       <Route path="toggle" component={TogglePage} />
       <Route path="toolbar" component={ToolbarPage} />
+    </Route>
+		<Redirect from="flexi" to="/flexi/home" />
+    <Route path="flexi">
+			<Route path="home" component={FlexiPage} />
+      <Route path="menu-test" component={FlexiTestMenuPage} />
     </Route>
     <Redirect from="discover-more" to="/discover-more/community" />
     <Route path="discover-more">
